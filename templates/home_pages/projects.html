@@ -1,0 +1,170 @@
+# projects.html
+{% extends "base.html" %}
+
+{% block title %}
+Projects – {{ site_info.site_name|default:"DevFolio" }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+  <!-- ================= HEADER ================= -->
+  <div class="text-center mb-5 fade-in">
+    <h1 class="fw-bold mb-3">Projects</h1>
+    <p class="lead text-muted">
+      A collection of real-world applications and systems I've built.
+    </p>
+  </div>
+
+  <!-- ================= SEARCH ================= -->
+  <form method="get" class="mb-4 text-center fade-in">
+    <div class="input-group input-group-sm justify-content-center">
+      <input
+        type="text"
+        name="q"
+        value="{{ query|default:'' }}"
+        class="form-control w-50"
+        placeholder="Search projects..."
+      >
+      <button class="btn btn-primary" type="submit">
+        Search
+      </button>
+    </div>
+  </form>
+
+  <!-- ================= TECH FILTER ================= -->
+  <div class="mb-5 text-center fade-in">
+
+    <a
+      href="{% url 'projects' %}"
+      class="btn btn-sm {% if not selected_tech %}btn-primary{% else %}btn-outline-primary{% endif %} me-2 mb-2"
+    >
+      All
+    </a>
+
+    {% for tech in techs %}
+      <a
+        href="?tech={{ tech.slug }}"
+        class="btn btn-sm
+          {% if selected_tech == tech.slug %}
+            btn-primary
+          {% else %}
+            btn-outline-primary
+          {% endif %}
+          me-2 mb-2"
+      >
+        {{ tech.name }}
+      </a>
+    {% endfor %}
+
+  </div>
+
+
+  <!-- ================= PROJECTS GRID ================= -->
+  <div class="row g-4">
+
+    {% for project in projects %}
+      <div class="col-md-6 col-lg-4 fade-in">
+        {% include "partial_sections/project_card.html" %}
+      </div>
+    {% empty %}
+      <div class="col-12 text-center py-5 fade-in">
+        <div class="bg-light p-4 rounded shadow-sm">
+          <h5 class="fw-semibold mb-2">No projects found</h5>
+          <p class="text-muted small mb-0">
+            Try adjusting your search or filters.
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- ================= PAGINATION ================= -->
+  {% if page_obj.has_other_pages %}
+    <nav class="mt-5 fade-in">
+      <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+              Previous
+            </a>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">
+              {{ num }}
+            </a>
+          </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+              Next
+            </a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  {% endif %}
+
+</div>
+
+  <!-- ================= HOW TO USE / ABOUT PROJECTS ================= -->
+<section class="mb-5 fade-in">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <div class="p-4 p-md-5 bg-light rounded shadow-sm">
+
+          <h4 class="fw-bold mb-3">
+            About These Projects
+          </h4>
+
+          <p class="text-muted mb-3">
+            This collection showcases real-world applications I’ve built using modern
+            web technologies. Each project demonstrates practical problem-solving,
+            backend architecture, and user-focused design.
+          </p>
+
+          <h6 class="fw-semibold mt-4 mb-2">Key Features</h6>
+          <ul class="text-muted small">
+            <li>Full-stack applications built with Django and modern frontend tools</li>
+            <li>Search and filtering by technology stack</li>
+            <li>Responsive design for desktop and mobile</li>
+            <li>Clean, scalable backend architecture</li>
+            <li>Production-ready deployments and configurations</li>
+          </ul>
+
+          <h6 class="fw-semibold mt-4 mb-2">How to Navigate</h6>
+          <ul class="text-muted small mb-0">
+            <li>Use the <strong>search bar</strong> to find specific projects</li>
+            <li>Filter by <strong>technology</strong> to explore relevant stacks</li>
+            <li>Click on a project to view detailed descriptions and features</li>
+            <li>Explore related technologies to discover similar work</li>
+          </ul>
+           <p class="text-muted small mt-3 mb-0">
+            Each project reflects a focus on performance, maintainability, and real-world usability.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+{% endblock %}
+
+

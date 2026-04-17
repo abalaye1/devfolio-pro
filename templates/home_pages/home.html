@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO -->
+{% include "includes/hero.html" %}
+
+<!-- WHAT I DO / VALUE PROPOSITION -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="fw-bold mb-3">What I Do</h2>
+        <p class="lead text-muted">
+          I design and build full-stack web applications from concept to
+          deployment — focusing on clean architecture, performance,
+          and real-world usability.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+
+      <div class="col-md-4 text-center">
+        <i class="bi bi-code-slash fs-1 text-primary mb-3"></i>
+        <h5 class="fw-semibold">Backend Development</h5>
+        <p class="text-muted small">
+          Django, REST APIs, authentication, databases, and scalable server-side logic.
+        </p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <i class="bi bi-layout-text-window fs-1 text-primary mb-3"></i>
+        <h5 class="fw-semibold">Frontend Development</h5>
+        <p class="text-muted small">
+          Responsive interfaces using HTML, CSS, Bootstrap, and modern UI patterns.
+        </p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <i class="bi bi-cloud-check fs-1 text-primary mb-3"></i>
+        <h5 class="fw-semibold">Deployment & DevOps</h5>
+        <p class="text-muted small">
+          Dockerized apps, environment-based settings, and production-ready deployments.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="fade-in">Featured Projects</h2>
+        <p class="fade-in">
+          A selection of real projects demonstrating full-stack development skills.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      {% for project in featured_projects %}
+        <div class="col-md-6 col-lg-4">
+          {% include "partial_sections/project_card.html" %}
+        </div>
+      {% empty %}
+        <div class="col-12 text-center text-muted">
+          Projects coming soon.
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'projects' %}" class="btn btn-outline-primary">
+        View All Projects
+      </a>
+    </div>
+
+  </div>
+</section>
+
+    <!-- WHY WORK WITH ME -->
+<section class="py-5 bg-light fade-in">
+  <div class="container">
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="fw-bold mb-3">Why Work With Me</h2>
+        <p class="text-muted">
+          I don’t just write code — I build reliable, scalable, and user-focused systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4 text-center">
+
+      <div class="col-md-4">
+        <div class="p-4 bg-white shadow-sm rounded h-100 fade-in fade-in-delay-1">
+          <i class="bi bi-lightning-charge fs-1 text-primary mb-3"></i>
+          <h5 class="fw-semibold">Performance First</h5>
+          <p class="text-muted small">
+            Optimized backend logic and efficient database design for real-world scale.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-4 bg-white shadow-sm rounded h-100 fade-in fade-in-delay-2">
+          <i class="bi bi-shield-check fs-1 text-primary mb-3"></i>
+          <h5 class="fw-semibold">Clean Architecture</h5>
+          <p class="text-muted small">
+            Structured, maintainable code using best practices and scalable patterns.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-4 bg-white shadow-sm rounded h-100 fade-in fade-in-delay-3">
+          <i class="bi bi-people fs-1 text-primary mb-3"></i>
+          <h5 class="fw-semibold">User-Focused</h5>
+          <p class="text-muted small">
+            Every feature is designed with usability, clarity, and real users in mind.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- TESTIMONIALS -->
+<section class="py-5 fade-in">
+  <div class="container">
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="fw-bold mb-3">What People Say</h2>
+        <p class="text-muted">
+          Feedback from collaborators and project experiences.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Testimonial 1 -->
+      <div class="col-md-6">
+        <div class="p-4 bg-light rounded shadow-sm h-100">
+          <p class="text-muted mb-3">
+              <i class="bi bi-chat-quote fs-2 text-primary mb-3"></i>
+            “Mr Wane delivered a clean and well-structured application.
+            The backend logic was solid, and everything was easy to understand
+            and extend.”
+          </p>
+
+          <div class="d-flex align-items-center">
+            <div>
+              <strong>Frontend Collaborator</strong><br>
+              <small class="text-muted">Team Project</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-md-6">
+        <div class="p-4 bg-light rounded shadow-sm h-100">
+          <p class="text-muted mb-3">
+              <i class="bi bi-chat-quote fs-2 text-primary mb-3"></i>
+            “Strong attention to detail and a clear focus on performance.
+            The project structure and deployment setup showed real-world readiness.”
+          </p>
+
+          <div class="d-flex align-items-center">
+            <div>
+              <strong>Peer Developer</strong><br>
+              <small class="text-muted">Code Review Feedback</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="py-5 text-center fade-in">
+  <div class="container">
+
+    <h2 class="fw-bold mb-3">
+      Let’s Build Something Great
+    </h2>
+
+    <p class="text-muted mb-4">
+      Have a project, idea, or opportunity? Let’s connect and make it happen.
+    </p>
+
+    <a href="{% url 'contact' %}" class="btn btn-primary btn-lg px-4 me-2">
+      Contact Me
+    </a>
+
+    <a href="{% url 'projects' %}" class="btn btn-outline-secondary btn-lg px-4">
+      View Projects
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

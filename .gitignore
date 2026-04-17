@@ -1,0 +1,16 @@
+# .gitignore
+*.pyc
+__pycache__/
+*.sqlite3
+.env
+*.env.local
+venv/
+env/
+.idea/
+*.log
+staticfiles/
+media/
+.DS_Store
+.env.production
+.env.development
+.env.example

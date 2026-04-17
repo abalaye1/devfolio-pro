@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+Blog – {{ site_info.site_name|default:"DevFolio" }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+  <!-- Page Header -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold mb-3">Blog</h1>
+    <p class="lead text-muted">
+      Notes, write-ups, and technical reflections from real projects.
+    </p>
+  </div>
+
+  <!-- Blog Posts -->
+  <div class="row g-4 justify-content-center">
+
+    {% for post in posts %}
+      <div class="col-md-10 col-lg-8">
+
+        <article class="card shadow-sm h-100">
+
+          <div class="card-body">
+
+            <h4 class="fw-bold mb-2">
+              <a
+                href="{% url 'blog_detail' post.slug %}"
+                class="text-decoration-none text-dark"
+              >
+                {{ post.title }}
+              </a>
+            </h4>
+
+            <div class="text-muted small mb-3">
+              {{ post.published_at|date:"F j, Y" }} ·
+              {{ post.reading_time }} min read
+            </div>
+
+            <p class="text-muted">
+              {{ post.excerpt|default:post.content|truncatewords:35 }}
+            </p>
+
+            <a
+              href="{% url 'blog_detail' post.slug %}"
+              class="btn btn-sm btn-outline-primary"
+            >
+              Read More →
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+    {% empty %}
+      <div class="col-12 text-center text-muted">
+        Blog posts coming soon.
+      </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- Pagination -->
+  {% if page_obj.has_other_pages %}
+    <nav class="mt-5">
+      <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+              Previous
+            </a>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">
+              {{ num }}
+            </a>
+          </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+              Next
+            </a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+<!-- templates/hero.html -->
+{% load static %}
+
+<section class="hero-section d-flex align-items-center text-light">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <!-- Text Content -->
+      <div class="col-lg-7 text-center text-lg-start">
+
+        <span class="badge bg-primary mb-3 px-3 py-2">
+          Full-Stack Web Developer
+        </span>
+
+        <h1 class="display-4 fw-bold mt-3">
+          Hi, I’m <span class="text-primary">{{ site_info.author_name|default:"Your Name" }}</span><br>
+          I build scalable web applications
+        </h1>
+
+        <p class="lead mt-4 text-light opacity-75">
+          I specialize in Python & Django, crafting clean backends and modern,
+          responsive frontends using HTML, CSS, Bootstrap, and JavaScript.
+        </p>
+
+        <!-- Tech Stack -->
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mt-4">
+          <span class="badge bg-secondary">Python</span>
+          <span class="badge bg-secondary">Django</span>
+          <span class="badge bg-secondary">MYSQL</span>
+          <span class="badge bg-secondary">Bootstrap</span>
+          <span class="badge bg-secondary">Docker</span>
+           <span class="badge bg-secondary">GCP</span>
+           <span class="badge bg-secondary">AI</span>
+          <span class="badge bg-secondary">HTML</span>
+           <span class="badge bg-secondary">CSS</span>
+
+
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex flex-column flex-sm-row gap-3 mt-5 justify-content-center justify-content-lg-start">
+          <a href="{% url 'projects' %}" class="btn btn-primary btn-lg px-4">
+            View Projects
+          </a>
+          <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg px-4">
+            Contact Me
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Optional Visual / Avatar -->
+      <div class="col-lg-5 text-center">
+        <img
+          src="{% static 'images/hero-avatar.png' %}"
+          alt="Developer illustration"
+          class="img-fluid hero-image"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>

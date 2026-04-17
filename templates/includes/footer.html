@@ -1,0 +1,106 @@
+<footer class="bg-dark text-light pt-5 pb-4 mt-5">
+  <div class="container">
+
+    <div class="row g-4">
+
+      <!-- About -->
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">
+          {{ site_info.site_name|default:"DevFolio" }}
+        </h5>
+        <p class="text-secondary small">
+          Building clean, scalable, and production-ready web applications
+          using modern technologies.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4">
+        <h6 class="fw-semibold mb-3">Quick Links</h6>
+        <ul class="list-unstyled small">
+
+          <li class="mb-2">
+            <a href="{% url 'home' %}" class="text-decoration-none text-secondary footer-link">
+              Home
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="{% url 'projects' %}" class="text-decoration-none text-secondary footer-link">
+              Projects
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="{% url 'skills' %}" class="text-decoration-none text-secondary footer-link">
+              Skills
+            </a>
+          </li>
+
+          <li class="mb-2">
+            <a href="{% url 'blog_list' %}" class="text-decoration-none text-secondary footer-link">
+              Blog
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'contact' %}" class="text-decoration-none text-secondary footer-link">
+              Contact
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Contact / Social -->
+      <div class="col-md-4">
+        <h6 class="fw-semibold mb-3">Connect</h6>
+
+        <div class="d-flex gap-3 fs-5 mb-3">
+
+          {% if site_info.github_url %}
+            <a href="{{ site_info.github_url }}" target="_blank" class="text-secondary footer-icon">
+              <i class="bi bi-github"></i>
+            </a>
+          {% endif %}
+
+          {% if site_info.linkedin_url %}
+            <a href="{{ site_info.linkedin_url }}" target="_blank" class="text-secondary footer-icon">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          {% endif %}
+
+          {% if site_info.twitter_url %}
+            <a href="{{ site_info.twitter_url }}" target="_blank" class="text-secondary footer-icon">
+              <i class="bi bi-twitter"></i>
+            </a>
+          {% endif %}
+
+        </div>
+
+        <p class="small text-secondary mb-0">
+          {{ site_info.contact_email|default:"wane@wanequest.com" }}
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-secondary my-4">
+
+    <!-- Bottom -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-secondary">
+
+      <p class="mb-2 mb-md-0">
+        © {{ now|date:"Y" }} {{ site_info.site_name|default:"DevFolio" }}. All rights reserved.
+      </p>
+
+      <p class="mb-0">
+        Built with Django & Bootstrap
+      </p>
+
+    </div>
+
+  </div>
+</footer>

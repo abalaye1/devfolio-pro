@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<!-- SEO -->
+<meta name="description" content="{% if site_info %}{{ site_info.meta_description }}{% else %}Developer portfolio showcasing projects and skills{% endif %}">
+<meta name="keywords" content="{% if site_info %}{{ site_info.meta_keywords }}{% else %}developer, portfolio, web development, programming{% endif %}">
+<meta name="author" content="{% if site_info %}{{ site_info.author_name }}{% else %}DevFolio{% endif %}">
+
+<title>
+    {% block title %}
+        {% if site_info %}
+            {{ site_info.site_name }} - {{ site_info.tagline }}
+        {% else %}
+            DevFolio - Developer Portfolio
+        {% endif %}
+    {% endblock %}
+</title>
+
+<!-- Favicon -->
+{% if site_info and site_info.favicon %}
+    <link rel="icon" type="image/x-icon" href="{{ site_info.favicon.url }}">
+{% endif %}
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+{% block extra_css %}{% endblock %}
+
+<!-- Analytics -->
+{% if site_info and site_info.google_analytics_id %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site_info.google_analytics_id }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site_info.google_analytics_id }}');
+</script>
+{% endif %}
+```
+
+</head>
+
+<body>
+
+```
+<!-- NAVBAR -->
+<header>
+    {% include 'includes/navbar.html' %}
+
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="container mt-5 pt-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="pt-5">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer>
+    {% include 'includes/footer.html' %}
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="btn btn-primary btn-lg back-to-top">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+</footer>
+
+<!-- JS: Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS: Custom -->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
+
+<!-- Scroll Reveal Animation -->
+<script>
+    const elements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                observer.unobserve(entry.target); // animate once
+            }
+        });
+    });
+
+    elements.forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+    });
+</script>
+```
+
+</body>
+</html>

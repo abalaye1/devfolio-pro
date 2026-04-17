@@ -1,0 +1,77 @@
+<!-- templates/navbar.html -->
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark bg-opacity-90 shadow-sm">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+      <i class="bi bi-code-slash me-2 text-primary"></i>
+      <span>{{ site_info.site_name|default:"DevFolio" }}</span>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <!-- Left nav -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'skills' %}">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'blog_list' %}">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <!-- Dashboard with unread badge -->
+            <a href="{% url 'contact_dashboard' %}" class="nav-link position-relative text-light">
+              Dashboard
+              {% if unread_count > 0 %}
+                <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                  {% if unread_count > 99 %}
+                    99+
+                  {% else %}
+                    {{ unread_count }}
+                  {% endif %}
+                </span>
+              {% endif %}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <!-- Right nav -->
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        {% if user.is_authenticated %}
+          <li class="nav-item me-3 text-light small">
+            <i class="bi bi-person-circle me-1"></i>
+            {{ user.username }}
+          </li>
+
+          <a class="btn btn-outline-light btn-sm" href="{% url 'log_out' %}">
+              Logout
+         </a>
+        {% else %}
+          <li class="nav-item me-2"><a class="nav-link" href="{% url 'log_in' %}">Login</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary btn-sm px-3" href="{% url 'contact' %}">Hire Me</a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
