@@ -12,9 +12,9 @@ from .base import *
 
 # Production-specific overrides
 load_dotenv()
-DEBUG = os.environ.get('DEBUG', default=False)
+DEBUG = False
 
-
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # database configuration
 #DB_NAME = os.environ.get("DB_NAME")
@@ -54,16 +54,16 @@ DATABASES = {
 # Database (Render will give you this)
 DATABASE_URL=os.environ.get('DATABASE_URL')
 
-SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT')
-SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE')
-CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE')
-SECURE_HSTS_SECONDS = os.environ.get('SECURE_HSTS_SECONDS')
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get('SECURE_HSTS_INCLUDE_SUBDOMAINS')
-SECURE_HSTS_PRELOAD = os.environ.get('SECURE_HSTS_PRELOAD')
-SECURE_REFERRER_POLICY = os.environ.get('SECURE_REFERRER_POLICY')
-SECURE_BROWSER_XSS_FILTER = os.environ.get('SECURE_BROWSER_XSS_FILTER')
-SECURE_CONTENT_TYPE_NOSNIFF = os.environ.get('SECURE_CONTENT_TYPE_NOSNIFF')
-X_FRAME_OPTIONS = os.environ.get('X_FRAME_OPTIONS')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 
 
 
