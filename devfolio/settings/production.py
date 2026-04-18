@@ -15,7 +15,7 @@ from .base import *
 load_dotenv()
 DEBUG = False
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # database configuration
 #DB_NAME = os.environ.get("DB_NAME")
