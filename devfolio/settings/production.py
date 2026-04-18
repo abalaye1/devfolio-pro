@@ -1,4 +1,5 @@
 # devfolio/settings/production.py
+import os
 
 from dotenv import load_dotenv
 from pathlib import Path
@@ -45,7 +46,7 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 # ✅ Database (Render PostgreSQL)
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
+        default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=True,
     )
