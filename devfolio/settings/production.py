@@ -1,5 +1,4 @@
 # devfolio/settings/production.py
-import os
 
 from dotenv import load_dotenv
 from pathlib import Path
@@ -15,7 +14,7 @@ from .base import *
 load_dotenv()
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS",default=[])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # database configuration
 #DB_NAME = os.environ.get("DB_NAME")
@@ -46,11 +45,14 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 # ✅ Database (Render PostgreSQL)
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
+        default='DATABASE_URL',
         conn_max_age=600,
         ssl_require=True,
     )
 }
+
+
+
 
 # Database (Render will give you this)
 DATABASE_URL = os.environ.get('DATABASE_URL')
@@ -70,7 +72,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 
 #DATABASES = {
-#        'default': {
+        #'default': {
             #'ENGINE': 'django.db.backends.mysql',
             #'NAME': DB_NAME,
             #'USER': DB_USER,
