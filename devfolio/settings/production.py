@@ -52,7 +52,7 @@ DATABASES = {
 }
 
 # Database (Render will give you this)
-DATABASE_URL=os.environ.get('DATABASE_URL')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
