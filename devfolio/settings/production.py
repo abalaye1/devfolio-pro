@@ -12,7 +12,7 @@ from .base import *
 
 # Production-specific overrides
 load_dotenv()
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "devfolio-pro.onrender.com",
