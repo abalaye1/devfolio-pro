@@ -14,7 +14,11 @@ from .base import *
 load_dotenv()
 DEBUG = False
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = [
+    "devfolio-pro.onrender.com",
+    "www.wanequest.com",
+    "wanequest.com",
+]
 
 # database configuration
 #DB_NAME = os.environ.get("DB_NAME")
