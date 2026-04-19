@@ -13,6 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 # Default to production for WSGI
 os.environ.setdefault('ENVIRONMENT', 'production')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'devfolio.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'devfolio.settings.production')
 
 application = get_wsgi_application()

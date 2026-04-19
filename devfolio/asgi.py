@@ -13,6 +13,6 @@ from django.core.asgi import get_asgi_application
 
 # Default to production for ASGI
 os.environ.setdefault('ENVIRONMENT', 'production')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'devfolio.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'devfolio.settings.production')
 
 application = get_asgi_application()
