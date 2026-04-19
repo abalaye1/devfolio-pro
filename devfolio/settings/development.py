@@ -12,6 +12,7 @@ from .base import *
 # Development-specific overrides
 DEBUG = True
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(" ")
 
 
 # Database configuration - Use SQLite for development (or MySQL if preferred)
