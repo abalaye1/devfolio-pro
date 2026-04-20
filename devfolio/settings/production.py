@@ -21,11 +21,11 @@ ALLOWED_HOSTS = [
 ]
 
 # database configuration
-#DB_NAME = os.environ.get("DB_NAME")
-#DB_USER = os.environ.get("DB_USER")
-#DB_PASSWORD = os.environ.get("DB_PASSWORD")
-#DB_HOST = os.environ.get("DB_HOST", "db")
-#DB_PORT = os.environ.get("DB_PORT")
+DB_NAME = os.environ.get("DB_NAME")
+DB_USER = os.environ.get("DB_USER")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB_HOST = os.environ.get("DB_HOST") #"db"
+DB_PORT = os.environ.get("DB_PORT")
 
 #MYSQL database configuration For Docker
 #MYSQL_HOST = os.environ.get("MYSQL_HOST")
@@ -75,14 +75,14 @@ X_FRAME_OPTIONS = 'DENY'
 
 
 
-#DATABASES = {
-        #'default': {
-            #'ENGINE': 'django.db.backends.mysql',
-            #'NAME': DB_NAME,
-            #'USER': DB_USER,
-            #'PASSWORD': DB_PASSWORD,
-            #'HOST': DB_HOST,
-            #'PORT': DB_PORT,
+database = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
 
             #MYSQL
             #'MYSQL_HOST': MYSQL_HOST,
@@ -112,8 +112,8 @@ X_FRAME_OPTIONS = 'DENY'
 #            'TEST': {
 #                'NAME': 'test_db'
 #            }
-#        }
-#    }
+        }
+    }
 
 
 
