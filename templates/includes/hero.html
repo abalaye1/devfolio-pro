@@ -46,18 +46,18 @@
       </div>
 
       <!-- RIGHT SIDE VISUAL PANEL (this is the “sidebar look”) -->
-<div class="col-lg-5 d-none d-lg-block">
-  <div class="hero-code-panel">
+<div class="col-lg-5 col-12 mt-4 mt-lg-0">
+<div class="hero-code-panel">
 
-    <!-- Fake window bar -->
-    <div class="code-header">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-    </div>
+  <!-- window bar -->
+  <div class="code-header">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
 
-    <!-- Code content -->
-    <pre class="code-content"><code>
+  <!-- typing area -->
+  <pre class="code-content typing"><code>
 from django.shortcuts import render
 
 def portfolio(request):
@@ -65,9 +65,9 @@ def portfolio(request):
         "projects": Project.objects.all(),
         "stack": ["Django", "PostgreSQL", "Docker"]
     })
-    </code></pre>
+  </code></pre>
 
-  </div>
+</div>
 </div>
 
     </div>
