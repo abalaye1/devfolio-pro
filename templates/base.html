@@ -110,7 +110,7 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.animationPlayState = 'running';
-                observer.unobserve(entry.target); // animate once
+                observer.unobserve(entry.target);
             }
         });
     });
@@ -120,7 +120,55 @@
         observer.observe(el);
     });
 </script>
-```
 
+<!-- ✅ Typing Effect (PUT IT LAST) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const code = `from django.shortcuts import render
+
+def portfolio(request):
+    return render(request, "projects.html", {
+        "projects": Project.objects.all(),
+        "stack": ["Django", "PostgreSQL", "Docker"]
+    })`;
+
+  const target = document.getElementById("typing-code");
+
+  if (!target) return; // ✅ prevents errors on pages without hero
+
+  let i = 0;
+  const speed = 25;
+
+  function typeWriter() {
+    if (i < code.length) {
+      target.textContent += code.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  typeWriter();
+});
+</script>
+```
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const elements = document.querySelectorAll(".fade-in");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target); // animate once
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

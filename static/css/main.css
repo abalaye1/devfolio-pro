@@ -366,3 +366,57 @@ hr {
 @keyframes blink {
   50% { border-color: transparent; }
 }
+
+/* typing cursor */
+#typing-code {
+  border-right: 2px solid rgba(255,255,255,0.75);
+  padding-right: 4px;
+  animation: blink 0.8s infinite;
+  white-space: pre-wrap;
+}
+
+/* blinking cursor */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+
+.skill-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.skill-card:hover i {
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+.skill-card:hover h6 {
+  color: #0d6efd; /* Bootstrap primary */
+}
+
+.skill-card:hover {
+  background-color: #f8f9fa;
+}
+
+.skill-card {
+  cursor: pointer;
+}
+
+
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
