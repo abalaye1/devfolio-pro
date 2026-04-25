@@ -16,17 +16,15 @@
     </a>
   </div>
 
-  <!-- ================= HERO (IMAGE + QUICK INFO) ================= -->
+  <!-- ================= HERO ================= -->
   <div class="row g-5 align-items-start mb-5">
 
-    <!-- Project Image -->
+    <!-- Image -->
     <div class="col-lg-6 fade-in">
       {% if project.thumbnail %}
-        <img
-          src="{{ project.thumbnail.url }}"
-          class="img-fluid rounded shadow-sm"
-          alt="{{ project.title }}"
-        >
+        <img src="{{ project.thumbnail.url }}"
+             class="img-fluid rounded shadow-sm"
+             alt="{{ project.title }}">
       {% else %}
         <div class="bg-light rounded p-5 text-center text-muted">
           No preview image
@@ -34,75 +32,53 @@
       {% endif %}
     </div>
 
-    <!-- Project Intro -->
+    <!-- Info -->
     <div class="col-lg-6 fade-in fade-in-delay-1">
 
-      <h1 class="fw-bold mb-3">
-        {{ project.title }}
-      </h1>
+      <h1 class="fw-bold mb-3">{{ project.title }}</h1>
 
       <p class="lead text-muted">
         {{ project.short_description }}
       </p>
 
-      <!-- Tech Stack -->
+      <!-- Tech -->
       {% if project.tech_stack.exists %}
-        <div class="mb-4">
-          <h6 class="text-uppercase text-muted small mb-2">
-            Tech Stack
-          </h6>
+      <div class="mb-4">
+        <h6 class="text-uppercase text-muted small mb-2">Tech Stack</h6>
 
-          {% for tech in project.tech_stack.all %}
-            <span class="badge bg-secondary me-1 mb-1">
-              {{ tech.name }}
-            </span>
-          {% endfor %}
-        </div>
+        {% for tech in project.tech_stack.all %}
+          <span class="badge bg-secondary me-1 mb-1">
+            {{ tech.name }}
+          </span>
+        {% endfor %}
+      </div>
       {% endif %}
 
-<!-- Actions -->
-<div class="d-flex flex-wrap gap-3">
+      <!-- Actions -->
+      <div class="d-flex flex-wrap gap-3">
 
-  {% if project.live_url %}
-    <a
-      href="{{ project.live_url }}"
-      class="btn btn-primary"
-      target="_blank"
-    >
-      <i class="bi bi-box-arrow-up-right me-1"></i>
-      Live Demo
-    </a>
-  {% endif %}
+        {% if project.live_url %}
+        <a href="{{ project.live_url }}" class="btn btn-primary" target="_blank">
+          Live Demo
+        </a>
+        {% endif %}
 
-  {% if project.github_url %}
+        {% if project.github_url %}
+          {% if project.is_private_repo %}
+            <a href="{% url 'contact' %}?project={{ project.slug }}"
+               class="btn btn-outline-dark">
+              Request Code Access
+            </a>
+          {% else %}
+            <a href="{{ project.github_url }}"
+               class="btn btn-dark"
+               target="_blank">
+              View Code
+            </a>
+          {% endif %}
+        {% endif %}
 
-    {% if project.is_private_repo %}
-      <!-- Private repo → CTA to contact -->
-      <a
-        href="{% url 'contact' %}?project={{ project.slug }}"
-        class="btn btn-outline-dark"
-        title="Request access to source code"
-      >
-        <i class="bi bi-lock me-1"></i>
-        Request Code Access
-      </a>
-
-    {% else %}
-      <!-- Public repo -->
-      <a
-        href="{{ project.github_url }}"
-        class="btn btn-dark"
-        target="_blank"
-        title="View source code on GitHub"
-      >
-        <i class="bi bi-github me-1"></i>
-        View Code
-      </a>
-    {% endif %}
-
-  {% endif %}
-
-</div>
+      </div>
 
     </div>
   </div>
@@ -110,48 +86,44 @@
   <!-- ================= CASE STUDY ================= -->
   <article class="mx-auto" style="max-width: 900px;">
 
-    <!-- OVERVIEW -->
+    <!-- Overview -->
     <section class="mb-5 fade-in">
-      <h4 class="fw-semibold mb-2">Overview</h4>
+      <h4 class="fw-semibold mb-3">Overview</h4>
       <div class="blog-content">
         {{ project.description|markdownify|safe }}
       </div>
     </section>
 
-    <!-- PROBLEM -->
     {% if project.problem %}
-    <section class="mb-5 fade-in fade-in-delay-1">
-      <h4 class="fw-semibold mb-2">Problem</h4>
+    <section class="mb-5 fade-in">
+      <h4 class="fw-semibold mb-3">Problem</h4>
       <div class="blog-content">
         {{ project.problem|markdownify|safe }}
       </div>
     </section>
     {% endif %}
 
-    <!-- SOLUTION -->
     {% if project.solution %}
-    <section class="mb-5 fade-in fade-in-delay-1">
-      <h4 class="fw-semibold mb-2">Solution</h4>
+    <section class="mb-5 fade-in">
+      <h4 class="fw-semibold mb-3">Solution</h4>
       <div class="blog-content">
         {{ project.solution|markdownify|safe }}
       </div>
     </section>
     {% endif %}
 
-    <!-- CHALLENGES -->
     {% if project.challenges %}
-    <section class="mb-5 fade-in fade-in-delay-2">
-      <h4 class="fw-semibold mb-2">Challenges</h4>
+    <section class="mb-5 fade-in">
+      <h4 class="fw-semibold mb-3">Challenges</h4>
       <div class="blog-content">
         {{ project.challenges|markdownify|safe }}
       </div>
     </section>
     {% endif %}
 
-    <!-- RESULTS -->
     {% if project.results %}
-    <section class="mb-5 fade-in fade-in-delay-2">
-      <h4 class="fw-semibold mb-2">Results</h4>
+    <section class="mb-5 fade-in">
+      <h4 class="fw-semibold mb-3">Results</h4>
       <div class="blog-content">
         {{ project.results|markdownify|safe }}
       </div>
@@ -160,53 +132,39 @@
 
   </article>
 
-  <!-- ================= TECHNOLOGIES (CLICKABLE) ================= -->
+  <!-- ================= TECHNOLOGIES ================= -->
   {% if project.tech_stack.exists %}
-    <div class="mt-5">
+  <div class="mt-5">
 
-      <h5 class="fw-semibold mb-3">
-        Technologies Used
-      </h5>
+    <h5 class="fw-semibold mb-3">Technologies Used</h5>
 
-      <div class="d-flex flex-wrap gap-2">
-
-        {% for tech in project.tech_stack.all %}
-          <a
-            href="{% url 'projects' %}?tech={{ tech.slug }}"
-            class="badge rounded-pill text-decoration-none
-                   bg-light text-dark border skill-badge"
-          >
-            {% if tech.icon %}
-              <i class="{{ tech.icon }} me-1 text-primary"></i>
-            {% endif %}
-            {{ tech.name }}
-          </a>
-        {% endfor %}
-
-      </div>
-
+    <div class="d-flex flex-wrap gap-2">
+      {% for tech in project.tech_stack.all %}
+        <a href="{% url 'projects' %}?tech={{ tech.slug }}"
+           class="badge rounded-pill text-decoration-none bg-light text-dark border skill-badge">
+          {{ tech.name }}
+        </a>
+      {% endfor %}
     </div>
+
+  </div>
   {% endif %}
 
-  <!-- ================= RELATED PROJECTS ================= -->
+  <!-- ================= RELATED ================= -->
   {% if related_projects %}
-    <div class="mt-5 pt-4 border-top">
+  <div class="mt-5 pt-4 border-top">
 
-      <h5 class="fw-semibold mb-4">
-        Related Projects
-      </h5>
+    <h5 class="fw-semibold mb-4">Related Projects</h5>
 
-      <div class="row g-4">
-
-        {% for project in related_projects %}
-          <div class="col-md-6 col-lg-4">
-            {% include "partial_sections/project_card.html" %}
-          </div>
-        {% endfor %}
-
-      </div>
-
+    <div class="row g-4">
+      {% for project in related_projects %}
+        <div class="col-md-6 col-lg-4">
+          {% include "partial_sections/project_card.html" %}
+        </div>
+      {% endfor %}
     </div>
+
+  </div>
   {% endif %}
 
 </div>

@@ -1,6 +1,6 @@
+<div class="card project-card h-100 position-relative shadow-sm">
 
-<div class="card h-100 shadow-sm project-card">
-
+  <!-- Thumbnail -->
   {% if project.thumbnail %}
     <img
       src="{{ project.thumbnail.url }}"
@@ -11,46 +11,50 @@
 
   <div class="card-body d-flex flex-column">
 
-    <h5 class="card-title fw-bold">
+    <!-- Title -->
+    <h5 class="card-title fw-semibold">
       {{ project.title }}
     </h5>
 
-    <p class="card-text text-muted small">
-      {{ project.short_description|truncatewords:20 }}
+    <!-- Description -->
+    <p class="card-text text-muted small flex-grow-1">
+      {{ project.short_description }}
     </p>
 
-    <!-- Tech stack badges -->
+    <!-- Tech Stack -->
     {% if project.tech_stack.exists %}
-      <div class="mb-3 mt-2">
-        {% for tech in project.tech_stack.all %}
-          <span class="badge bg-secondary me-1 mb-1">
+      <div class="mb-3">
+        {% for tech in project.tech_stack.all|slice:":3" %}
+          <span class="badge bg-light text-dark border me-1 mb-1">
             {{ tech.name }}
           </span>
         {% endfor %}
       </div>
     {% endif %}
 
-    <!-- Spacer pushes buttons to bottom -->
-    <div class="mt-auto d-flex justify-content-between align-items-center">
+    <!-- Footer Actions -->
+    <div class="d-flex justify-content-between align-items-center">
 
-      <a
-        href="{% url 'project_detail' project.slug %}"
-        class="btn btn-outline-primary btn-sm"
-      >
-        Details
-      </a>
+      <!-- Optional explicit link -->
+      <small class="text-muted">
+        View Details →
+      </small>
 
-      {% if project.live_url %}
-        <a
-          href="{{ project.live_url }}"
-          class="btn btn-primary btn-sm"
-          target="_blank"
-        >
-          Live
+      <!-- Optional GitHub icon -->
+      {% if project.github_url and not project.is_private_repo %}
+        <a href="{{ project.github_url }}"
+           target="_blank"
+           class="text-dark"
+           title="View on GitHub">
+          <i class="bi bi-github"></i>
         </a>
       {% endif %}
 
     </div>
+
+    <!-- ✅ Makes entire card clickable -->
+    <a href="{% url 'project_detail' project.slug %}"
+       class="stretched-link"></a>
 
   </div>
 </div>

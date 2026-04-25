@@ -123,65 +123,7 @@ Projects – {{ site_info.site_name|default:"DevFolio" }}
     <div class="row justify-content-center">
       <div class="col-lg-10">
 
-        <div class="p-4 p-md-5 bg-light rounded shadow-sm">
 
-          <h4 class="fw-bold mb-3">
-            About These Projects
-          </h4>
-
-          <p class="text-muted mb-3">
-            This collection showcases real-world applications I’ve built using modern
-            web technologies. Each project demonstrates practical problem-solving,
-            backend architecture, and user-focused design.
-          </p>
-
-          <h6 class="fw-semibold mt-4 mb-2">Key Features</h6>
-          <ul class="text-muted small">
-            <li>Full-stack applications built with Django and modern frontend tools</li>
-            <li>Search and filtering by technology stack</li>
-            <li>Responsive design for desktop and mobile</li>
-            <li>Clean, scalable backend architecture</li>
-            <li>Production-ready deployments and configurations</li>
-          </ul>
-
-<h6 class="fw-semibold mt-4 mb-2">How to Navigate</h6>
-
-<ul class="text-muted small mb-0">
-
-  <li>
-    Use the
-    <strong>
-      <a href="{% url 'projects' %}?q=django" class="text-decoration-none">
-        search bar
-      </a>
-    </strong>
-    to find specific projects
-  </li>
-
-  <li>
-    Filter by technologies like:
-    {% for tech in techs|slice:":3" %}
-      <a href="?tech={{ tech.slug }}" class="text-decoration-none me-1">
-        {{ tech.name }}
-      </a>
-    {% endfor %}
-  </li>
-
-  <li>
-    Click on a project to view detailed descriptions and features
-  </li>
-
-  <li>
-    Explore related technologies to discover similar work
-  </li>
-
-</ul>
-
-<p class="text-muted small mt-3 mb-0">
-  Each project reflects a focus on performance, maintainability, and real-world usability.
-</p>
-
-        </div>
 
       </div>
     </div>

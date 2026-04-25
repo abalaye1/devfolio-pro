@@ -173,3 +173,11 @@ RECAPTCHA_PRIVATE_KEY = "6LcP4a0sAAAAAD4ScPbB4fYloIr4QvnQeqj-gh0D"
 
 
 
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'wane.wanequest@gmail.com'
+EMAIL_HOST_PASSWORD = 'qani yxjc lbje vwtt' # Use App Password, not regular password
+DEFAULT_FROM_EMAIL = 'wane.wanequest@gmail.com'
